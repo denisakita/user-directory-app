@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {User} from "../models/user";
 
 @Injectable({
@@ -14,7 +14,9 @@ export class UserService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}?results=${environment.PAGE_SIZE}`);
+    return this.http.get<{ results: User[] }>(`${this.apiUrl}?results=10`).pipe(
+      map(response => response.results)
+    );
   }
 
   getUserById(id: string): Observable<User> {

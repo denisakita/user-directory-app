@@ -4,8 +4,8 @@ import {UserDetailsComponent, UserListComponent} from "./components";
 
 
 const routes: Routes = [
-  {path: 'user-list', component: UserListComponent},
-  {path: 'user-details', component: UserDetailsComponent},
+  {path: 'users', component: UserListComponent},
+  {path: 'users/:id', component: UserDetailsComponent},
 
 
 ];
