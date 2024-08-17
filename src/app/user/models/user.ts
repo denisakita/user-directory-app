@@ -1,4 +1,3 @@
-
 export interface Name {
   title: string;
   first: string;
@@ -74,4 +73,14 @@ export interface User {
   id: Id;
   picture: Picture;
   nat: string;
+}
+
+export interface UserResponse {
+  results: User[];
+  info: {
+    page: number;
+    results: number;
+    seed: string;
+    version: string;
+  };
 }

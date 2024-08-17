@@ -6,7 +6,7 @@ export class MenuItem {
 
 export const MENU = [
   new MenuItem(1, 'Home', '/', 'workspaces', true, '',),
-  new MenuItem(2, 'Users', '/users', 'user', true, ''),
+  new MenuItem(2, 'Users', '/users', 'people', true, ''),
 
 
 ];

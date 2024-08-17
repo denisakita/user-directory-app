@@ -7,8 +7,6 @@ import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-side-nav',
-  standalone: true,
-  imports: [],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss'
 })

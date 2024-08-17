@@ -44,7 +44,7 @@
 }
 
 // Edit button: Used for editing items.
-.edit-button {
+.details-button {
   color: var(--secondary-color);
 
   &:hover {
@@ -52,14 +52,6 @@
   }
 }
 
-// Delete button: Used for deleting items.
-.delete-button {
-  color: var(--primary-color);
-
-  &:hover {
-    color: var(--primary-color-shadow);
-  }
-}
 
 // Search button: Used to trigger search actions.
 .search-button {
