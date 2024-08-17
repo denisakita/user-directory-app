@@ -32,10 +32,5 @@
   </mat-card>
 </div>
 
-<div *ngIf="!isLoading && !user" class="no-user-container">
-  <mat-card class="no-user-card">
-    <mat-card-content>
-      <p>User not found</p>
-    </mat-card-content>
-  </mat-card>
-</div>
+<app-no-results *ngIf="!isLoading && !user"></app-no-results>
+

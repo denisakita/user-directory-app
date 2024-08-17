@@ -4,12 +4,15 @@ import * as fromComponents from "./components/index";
 import {UserListComponent} from "./components";
 import {MatPaginator} from "@angular/material/paginator";
 import {
-  MatCell, MatCellDef,
+  MatCell,
+  MatCellDef,
   MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
   MatHeaderRow,
   MatHeaderRowDef,
-  MatRow, MatRowDef,
+  MatRow,
+  MatRowDef,
   MatTable
 } from "@angular/material/table";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -29,6 +32,7 @@ import {
 } from "@angular/material/card";
 import {UserRoutingModule} from "./user-routing.module";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {HomeModule} from "../home/home.module";
 
 
 @NgModule({
@@ -67,7 +71,8 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     MatCardImage,
     MatCardTitle,
     MatProgressSpinner,
-    MatCardActions
+    MatCardActions,
+    HomeModule
   ]
 })
 export class UserModule {

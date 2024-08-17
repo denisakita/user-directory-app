@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {SideNavComponent} from "./components";
+import {NoResultsComponent, SideNavComponent} from "./components";
 import {HomeRoutingModule} from "./home-routing.module";
 import * as fromComponents from "./components/index";
 import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
@@ -16,7 +16,8 @@ import {MatIconButton} from "@angular/material/button";
     ...fromComponents.components,
   ],
   exports: [
-    SideNavComponent
+    SideNavComponent,
+    NoResultsComponent
   ],
   imports: [
     HomeRoutingModule,
