@@ -1,12 +1,12 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../../services/user.service";
-import {User} from "../../models/user";
 import {environment} from "../../../../environments/environment";
 import {MatTableDataSource} from "@angular/material/table";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatPaginator, MatPaginatorIntl} from "@angular/material/paginator";
 import {catchError, map, merge, startWith, switchMap} from "rxjs";
+import {Router} from "@angular/router";
+import {UserModel} from "../../models/user";
 
 @Component({
   selector: 'app-user-list',
@@ -14,18 +14,18 @@ import {catchError, map, merge, startWith, switchMap} from "rxjs";
   styleUrl: './user-list.component.scss'
 })
 export class UserListComponent implements OnInit {
-  columns: string[] = ['name', 'email', 'actions'];
+  columns: string[] = ['thumbnail', 'name', 'phone', 'email', 'actions'];
   isLoading = true;
   pageSize: number = environment.PAGE_SIZE;
   resultSize: number = 0;
-  userDS: MatTableDataSource<User> = new MatTableDataSource<User>();
+  userDS: MatTableDataSource<UserModel> = new MatTableDataSource<UserModel>();
 
   @ViewChild('paginator', {static: true}) paginator: MatPaginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);
   userFG: FormGroup = new FormGroup({});
 
   constructor(
     private userService: UserService,
-    private snackBar: MatSnackBar,
+    private router: Router,
     private fb: FormBuilder
   ) {
   }
@@ -49,7 +49,7 @@ export class UserListComponent implements OnInit {
         switchMap(() => this.loadUserList()),
         map(response => this.handleUserResponse(response)),
         catchError(() => this.handleUserError())
-      ).subscribe((data: User[]) => this.updateUserDataSource(data));
+      ).subscribe((data: UserModel[]) => this.updateUserDataSource(data));
   }
 
   loadUserList() {
@@ -57,7 +57,7 @@ export class UserListComponent implements OnInit {
     return this.userService.getUsers();
   }
 
-  handleUserResponse(response: { results: User[], info: { page: number } }) {
+  handleUserResponse(response: { results: UserModel[], info: { page: number } }) {
     this.isLoading = false;
     this.resultSize = response.info.page;
     return response.results;
@@ -69,15 +69,16 @@ export class UserListComponent implements OnInit {
     return [];
   }
 
-  updateUserDataSource(data: User[]) {
+  updateUserDataSource(data: UserModel[]) {
     this.userDS.data = data;
+    console.log(this.userDS.data)
   }
 
   getList() {
     this.loadUserList().subscribe((data) => this.updateUserList(data));
   }
 
-  updateUserList(data: { results: User[], info: { page: number } }) {
+  updateUserList(data: { results: UserModel[], info: { page: number } }) {
     if (data) {
       this.resultSize = data.info.page;
       this.userDS.data = data.results;
@@ -94,8 +95,14 @@ export class UserListComponent implements OnInit {
     this.userFG.setValue({name: '', email: ''});
   }
 
-  detailsUser(user: User) {
-    console.log("see details");
+  detailsUser(user: UserModel) {
+    const userId = user?.login?.uuid;
+    if (userId) {
+      console.log(userId)
+      this.router.navigate(['/users', userId]);
+    } else {
+      console.error(`User ID is not defined`);
+    }
   }
 
   addUser() {

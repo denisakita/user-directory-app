@@ -1,0 +1,17 @@
+<div *ngIf="isLoading">Loading...</div>
+<div *ngIf="!isLoading && user">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ user.name.first }} {{ user.name.last }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="user.picture.large" alt="{{ user.name.first }} {{ user.name.last }}">
+    <mat-card-content>
+      <p>Email: {{ user.email }}</p>
+      <p>Phone: {{ user.phone }}</p>
+      <p>Location: {{ user.location.city }}, {{ user.location.country }}</p>
+      <p>Username: {{ user.login.username }}</p>
+      <p>Date of Birth: {{ user.dob.date | date }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+

@@ -19,6 +19,8 @@ import {MatIcon} from "@angular/material/icon";
 import {MatSort} from "@angular/material/sort";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatInput} from "@angular/material/input";
+import {MatCard, MatCardContent, MatCardHeader, MatCardImage, MatCardTitle} from "@angular/material/card";
+import {UserRoutingModule} from "./user-routing.module";
 
 
 @NgModule({
@@ -49,7 +51,13 @@ import {MatInput} from "@angular/material/input";
     MatHeaderRowDef,
     MatRowDef,
     MatCellDef,
-    MatHeaderCellDef
+    MatHeaderCellDef,
+    MatCard,
+    MatCardContent,
+    UserRoutingModule,
+    MatCardHeader,
+    MatCardImage,
+    MatCardTitle
   ]
 })
 export class UserModule {

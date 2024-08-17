@@ -32,6 +32,7 @@ import {MatIconButton} from "@angular/material/button";
     MatListItem,
     MatIconButton,
     MatMenuItem,
+    HomeRoutingModule
 
   ]
 })

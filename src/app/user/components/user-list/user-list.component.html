@@ -32,9 +32,22 @@
     </form>
   </mat-toolbar>
   <mat-table [dataSource]="userDS" matSort matSortDirection="desc" matSortDisableClear>
+
+    <ng-container matColumnDef="thumbnail">
+      <mat-header-cell *matHeaderCellDef> Thumbnail</mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <img [src]="user.picture.thumbnail" alt="Thumbnail" class="thumbnail-image">
+      </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-header-cell> Name</mat-header-cell>
       <mat-cell *matCellDef="let user"> {{ user.name.first }} {{ user.name.last }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef> Phone</mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{ user.phone }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="email">

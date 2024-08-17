@@ -4,8 +4,9 @@ import {UserDetailsComponent, UserListComponent} from "./components";
 
 
 const routes: Routes = [
-  {path: 'users', component: UserListComponent},
-  {path: 'users/:id', component: UserDetailsComponent},
+  {path: '', component: UserListComponent},
+  { path: ':id', component: UserDetailsComponent },
+  { path: '**', redirectTo: '' } // Redirect to user list if the route doesn't match
 
 
 ];

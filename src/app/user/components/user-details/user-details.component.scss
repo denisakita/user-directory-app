@@ -1,0 +1,35 @@
+.user-card {
+  max-width: 800px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+}
+
+.photo-container {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.user-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.details-container {
+  flex: 2;
+}
+
+h2 {
+  margin: 0;
+}
+
+p {
+  margin: 5px 0;
+}

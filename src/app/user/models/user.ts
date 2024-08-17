@@ -1,86 +1,139 @@
-export interface Name {
-  title: string;
-  first: string;
-  last: string;
+export class Name {
+  constructor(
+    public title: string = '',
+    public first: string = '',
+    public last: string = ''
+  ) {
+  }
 }
 
-export interface Street {
-  number: number;
-  name: string;
+export class Street {
+  constructor(
+    public number: number = 0,
+    public name: string = ''
+  ) {
+  }
 }
 
-export interface Coordinates {
-  latitude: string;
-  longitude: string;
+export class Coordinates {
+  constructor(
+    public latitude: string = '',
+    public longitude: string = ''
+  ) {
+  }
 }
 
-export interface Timezone {
-  offset: string;
-  description: string;
+export class Timezone {
+  constructor(
+    public offset: string = '',
+    public description: string = ''
+  ) {
+  }
 }
 
-export interface Location {
-  street: Street;
-  city: string;
-  state: string;
-  country: string;
-  postcode: string | number;
-  coordinates: Coordinates;
-  timezone: Timezone;
+export class Location {
+  constructor(
+    public street: Street = new Street(),
+    public city: string = '',
+    public state: string = '',
+    public country: string = '',
+    public postcode: string | number = '',
+    public coordinates: Coordinates = new Coordinates(),
+    public timezone: Timezone = new Timezone()
+  ) {
+  }
 }
 
-export interface Login {
-  uuid: string;
-  username: string;
-  password: string;
-  salt: string;
-  md5: string;
-  sha1: string;
-  sha256: string;
+export class Login {
+  constructor(
+    public uuid: string = '',
+    public username: string = '',
+    public password: string = '',
+    public salt: string = '',
+    public md5: string = '',
+    public sha1: string = '',
+    public sha256: string = ''
+  ) {
+  }
 }
 
-export interface Dob {
-  date: Date;
-  age: number;
+export class Dob {
+  constructor(
+    public date: Date = new Date(),
+    public age: number = 0
+  ) {
+  }
 }
 
-export interface Registered {
-  date: Date;
-  age: number;
+export class Registered {
+  constructor(
+    public date: Date = new Date(),
+    public age: number = 0
+  ) {
+  }
 }
 
-export interface Id {
-  name: string;
-  value: string;
+export class Id {
+  constructor(
+    public name: string = '',
+    public value: string = ''
+  ) {
+  }
 }
 
-export interface Picture {
-  large: string;
-  medium: string;
-  thumbnail: string;
+export class Picture {
+  constructor(
+    public large: string = '',
+    public medium: string = '',
+    public thumbnail: string = ''
+  ) {
+  }
 }
 
-export interface User {
-  gender: string;
-  name: Name;
-  location: Location;
-  email: string;
-  login: Login;
-  dob: Dob;
-  registered: Registered;
-  phone: string;
-  cell: string;
-  id: Id;
-  picture: Picture;
-  nat: string;
+export class UserModel {
+  constructor(
+    public gender: string = '',
+    public name: Name = new Name(),
+    public location: Location = new Location(),
+    public email: string = '',
+    public login: Login = new Login(),
+    public dob: Dob = new Dob(),
+    public registered: Registered = new Registered(),
+    public phone: string = '',
+    public cell: string = '',
+    public id: Id = new Id(),
+    public picture: Picture = new Picture(),
+    public nat: string = ''
+  ) {
+  }
 }
 
-export interface UserResponse {
-  results: User[];
+export class UserResponseModel {
+  results: UserModel[];
   info: {
     page: number;
     results: number;
     seed: string;
     version: string;
   };
+
+  constructor() {
+    this.results = [];
+    this.info = {page: 0, results: 0, seed: '', version: ''};
+  }
+}
+
+export class UserResponse {
+  results: UserModel;
+  info: {
+    page: number;
+    results: number;
+    seed: string;
+    version: string;
+  };
+
+  constructor() {
+    this.results = new UserModel();
+    this.info = {page: 0, results: 0, seed: '', version: ''};
+  }
 }
