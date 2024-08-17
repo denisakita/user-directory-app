@@ -1,35 +1,74 @@
-.user-card {
-  max-width: 800px;
-  margin: 20px auto;
+@import 'main';
+
+.user-details-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.card-content {
+.mat-mdc-card-header {
+  display: flex;
+  padding: 16px 16px 16px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-card {
+  width: 800px;
+  height: auto;
+  margin: 20px;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.9;
+}
+
+.user-info {
   display: flex;
   align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
-.photo-container {
+.image-container {
   flex: 1;
-  padding-right: 20px;
+  max-width: 250px;
 }
 
-.user-photo {
-  width: 150px;
-  height: 150px;
+.image-container.image-glow {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 50%;
-  object-fit: cover;
+  overflow: hidden;
+}
+
+.user-picture {
+  width: 100%;
+  border-radius: 50%;
 }
 
 .details-container {
-  flex: 2;
+  padding-left: 62px;
 }
 
-h2 {
-  margin: 0;
+.details-container p {
+  margin: 4px 0;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
-p {
-  margin: 5px 0;
+mat-card-actions {
+  display: flex;
+  padding-right: 55px;
+  justify-content: center;
+padding-bottom: 16px;
+}
+
+
+.back-button {
+  margin-right: 0;
+}
+
+.back-button mat-icon {
+  margin-right: 10px;
 }
