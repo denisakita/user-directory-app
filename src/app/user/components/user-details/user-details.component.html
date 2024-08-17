@@ -1,6 +1,6 @@
 <div *ngIf="isLoading" class="loading-container">
-  <mat-spinner></mat-spinner>
-  <p>Loading...</p>
+  <mat-spinner class="custom-spinner"></mat-spinner>
+  <p class="loading-text">Loading...</p>
 </div>
 
 <div *ngIf="!isLoading && user" class="user-details-container">
@@ -15,12 +15,11 @@
                alt="{{ user.name?.first }} {{ user.name?.last }}" class="user-picture">
         </div>
         <div class="details-container">
-          <p><strong>Email:</strong> {{ user.email }}</p>
-          <p><strong>Phone:</strong> {{ user.phone }}</p>
-          <p><strong>Location:</strong> {{ user.location?.city }}, {{ user.location?.country }}</p>
-          <p><strong>Username:</strong> {{ user.login?.username }}</p>
-          <p><strong>Date  
-            of Birth:</strong> {{ user.dob?.date | date:'fullDate' }}</p>
+          <p class="details-item"><strong>Email:</strong> {{ user.email }}</p>
+          <p class="details-item"><strong>Phone:</strong> {{ user.phone }}</p>
+          <p class="details-item"><strong>Location:</strong> {{ user.location?.city }}, {{ user.location?.country }}</p>
+          <p class="details-item"><strong>Username:</strong> {{ user.login?.username }}</p>
+          <p class="details-item"><strong>Date of Birth:</strong> {{ user.dob?.date | date:'fullDate' }}</p>
         </div>
       </div>
     </mat-card-content>
