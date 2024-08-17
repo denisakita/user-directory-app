@@ -71,7 +71,6 @@ export class UserListComponent implements OnInit {
 
   updateUserDataSource(data: UserModel[]) {
     this.userDS.data = data;
-    console.log(this.userDS.data)
   }
 
   getList() {
@@ -98,7 +97,6 @@ export class UserListComponent implements OnInit {
   detailsUser(user: UserModel) {
     const userId = user?.login?.uuid;
     if (userId) {
-      console.log(userId)
       this.router.navigate(['/users', userId]);
     } else {
       console.error(`User ID is not defined`);

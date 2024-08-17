@@ -40,10 +40,10 @@ export class UserDetailsComponent implements OnInit {
       )
       .subscribe(user => {
         this.user = user;
-        console.log(user)
         this.isLoading = false;
       });
   }
+
 
   goBack(): void {
     this.router.navigate(['/users']);

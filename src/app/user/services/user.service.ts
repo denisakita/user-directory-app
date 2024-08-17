@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {catchError, map, Observable, of} from "rxjs";
+import {catchError, map, Observable, of, tap} from "rxjs";
 import {UserModel, UserResponseModel} from "../models/user";
 
 
@@ -10,6 +10,7 @@ import {UserModel, UserResponseModel} from "../models/user";
 })
 export class UserService {
   private apiUrl = environment.API_HOST;
+  private cachedUsers: UserModel[] = [];
 
   constructor(private http: HttpClient) {
   }
@@ -22,15 +23,21 @@ export class UserService {
     if (params?.email) {
       httpParams = httpParams.set('email', params.email);
     }
-    return this.http.get<UserResponseModel>(`${this.apiUrl}?results=10`, {params: httpParams});
+    return this.http.get<UserResponseModel>(`${this.apiUrl}?results=10`, {params: httpParams}).pipe(
+      tap(response => this.cachedUsers = response.results) // Cache users
+    );
   }
 
 
   getUserById(id: string): Observable<UserModel | null> {
-    return this.http.get<UserResponseModel>(`${this.apiUrl}?results=1&seed=${id}`).pipe(
-      map(response => response.results.length > 0 ? response.results[0] : null),
-      catchError(() => of(null))
-    );
+    if (this.cachedUsers.length === 0) {
+      return this.getUsers().pipe(
+        map(response => this.cachedUsers.find(user => user.login.uuid === id) || null),
+        catchError(() => of(null))
+      );
+    } else {
+      return of(this.cachedUsers.find(user => user.login.uuid === id) || null);
+    }
   }
 
 }
