@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {catchError, map, Observable, of, tap} from "rxjs";
 import {UserModel, UserResponseModel} from "../models/user";
 
@@ -15,19 +15,29 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  getUsers(params?: { name?: string; email?: string }): Observable<UserResponseModel> {
-    let httpParams = new HttpParams();
-    if (params?.name) {
-      httpParams = httpParams.set('name', params.name);
-    }
-    if (params?.email) {
-      httpParams = httpParams.set('email', params.email);
-    }
-    return this.http.get<UserResponseModel>(`${this.apiUrl}?results=10`, {params: httpParams}).pipe(
-      tap(response => this.cachedUsers = response.results) // Cache users
+  getUsers(): Observable<UserModel[]> {
+    return this.http.get<UserResponseModel>(`${this.apiUrl}?results=10`).pipe(
+      tap(response => this.cachedUsers = response.results),
+      map(response => response.results),
+      catchError(() => of([]))
     );
   }
 
+  filterUsers(name: string, email: string): Observable<UserModel[]> {
+    if (!this.cachedUsers.length) {
+      return this.getUsers().pipe(
+        map(users => this.applyFilter(users, name, email))
+      );
+    }
+    return of(this.applyFilter(this.cachedUsers, name, email));
+  }
+
+  private applyFilter(users: UserModel[], name: string, email: string): UserModel[] {
+    return users.filter(user =>
+      (!name || `${user.name.first} ${user.name.last}`.toLowerCase().includes(name.toLowerCase())) &&
+      (!email || user.email.toLowerCase().includes(email.toLowerCase()))
+    );
+  }
 
   getUserById(id: string): Observable<UserModel | null> {
     if (this.cachedUsers.length === 0) {

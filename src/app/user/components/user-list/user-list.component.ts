@@ -4,7 +4,7 @@ import {environment} from "../../../../environments/environment";
 import {MatTableDataSource} from "@angular/material/table";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {MatPaginator, MatPaginatorIntl} from "@angular/material/paginator";
-import {catchError, map, merge, startWith, switchMap} from "rxjs";
+import {catchError, debounceTime, map, startWith, switchMap} from "rxjs";
 import {Router} from "@angular/router";
 import {UserModel} from "../../models/user";
 
@@ -33,6 +33,13 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
     this.userFG = this.getFilterForm();
     this.initializeUserList();
+
+    this.userFG.valueChanges.pipe(
+      debounceTime(300), // Add debounce to limit requests
+      startWith(this.userFG.value),
+      switchMap(formValues => this.userService.filterUsers(formValues.name, formValues.email)),
+      catchError(() => [])
+    ).subscribe(data => this.updateUserDataSource(data));
   }
 
   getFilterForm() {
@@ -43,51 +50,28 @@ export class UserListComponent implements OnInit {
   }
 
   initializeUserList() {
-    merge(this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => this.loadUserList()),
-        map(response => this.handleUserResponse(response)),
-        catchError(() => this.handleUserError())
-      ).subscribe((data: UserModel[]) => this.updateUserDataSource(data));
-  }
-
-  loadUserList() {
-    this.isLoading = true;
-    return this.userService.getUsers();
-  }
-
-  handleUserResponse(response: { results: UserModel[], info: { page: number } }) {
-    this.isLoading = false;
-    this.resultSize = response.info.page;
-    return response.results;
-  }
-
-  handleUserError() {
-    this.isLoading = false;
-    this.resultSize = 0;
-    return [];
+    this.userService.getUsers().pipe(
+      map(users => {
+        this.isLoading = false;
+        this.resultSize = users.length;
+        return users;
+      }),
+      catchError(() => {
+        this.isLoading = false;
+        this.resultSize = 0;
+        return [];
+      })
+    ).subscribe(data => this.updateUserDataSource(data));
   }
 
   updateUserDataSource(data: UserModel[]) {
     this.userDS.data = data;
   }
 
-  getList() {
-    this.loadUserList().subscribe((data) => this.updateUserList(data));
-  }
-
-  updateUserList(data: { results: UserModel[], info: { page: number } }) {
-    if (data) {
-      this.resultSize = data.info.page;
-      this.userDS.data = data.results;
-    }
-    this.isLoading = false;
-  }
-
   searchUser() {
-    this.paginator.pageIndex = 0;
-    this.getList();
+    const filterValues = this.userFG.value;
+    this.userService.filterUsers(filterValues.name, filterValues.email)
+      .subscribe(data => this.updateUserDataSource(data));
   }
 
   clearUserFG() {
@@ -103,7 +87,4 @@ export class UserListComponent implements OnInit {
     }
   }
 
-  addUser() {
-    console.log("add user");
-  }
 }

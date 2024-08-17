@@ -1,9 +1,4 @@
 <div class="user-container">
-  <button mat-stroked-button class="add-button" (click)="addUser()">
-    <mat-icon>add</mat-icon>
-    Add User
-  </button>
-
   <mat-toolbar class="mat-elevation-z1 list-filter-toolbar">
     <form (ngSubmit)="searchUser()" [formGroup]="userFG" class="list-filter-form">
       <div class="tool-form">
@@ -16,14 +11,9 @@
           <mat-label>Email</mat-label>
           <input formControlName="email" matInput>
         </mat-form-field>
-
       </div>
 
       <div class="button-group">
-        <button mat-stroked-button type="submit" class="search-button">
-          <mat-icon>search</mat-icon>
-          Search
-        </button>
         <button (click)="clearUserFG()" mat-stroked-button class="clear-button">
           <mat-icon>cached</mat-icon>
           Clear
