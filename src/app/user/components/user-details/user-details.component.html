@@ -1,17 +1,19 @@
 <div *ngIf="isLoading">Loading...</div>
 <div *ngIf="!isLoading && user">
+  <button mat-button (click)="goBack()">Back</button>
   <mat-card>
     <mat-card-header>
-      <mat-card-title>{{ user.name.first }} {{ user.name.last }}</mat-card-title>
+      <mat-card-title>{{ user.name?.first }} {{ user.name?.last }}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image [src]="user.picture.large" alt="{{ user.name.first }} {{ user.name.last }}">
+    <img *ngIf="user.picture?.medium" mat-card-image [src]="user.picture.medium"
+         alt="{{ user.name?.first }} {{ user.name?.last }}">
     <mat-card-content>
       <p>Email: {{ user.email }}</p>
       <p>Phone: {{ user.phone }}</p>
-      <p>Location: {{ user.location.city }}, {{ user.location.country }}</p>
-      <p>Username: {{ user.login.username }}</p>
-      <p>Date of Birth: {{ user.dob.date | date }}</p>
+      <p>Location: {{ user.location?.city }}, {{ user.location?.country }}</p>
+      <p>Username: {{ user.login?.username }}</p>
+      <p>Date of Birth: {{ user.dob?.date | date:'fullDate' }}</p>
     </mat-card-content>
   </mat-card>
 </div>
-
+<div *ngIf="!isLoading && !user">User not found</div>

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {map, Observable} from "rxjs";
-import {UserModel, UserResponse, UserResponseModel} from "../models/user";
+import {catchError, map, Observable, of} from "rxjs";
+import {UserModel, UserResponseModel} from "../models/user";
 
 
 @Injectable({
@@ -26,9 +26,10 @@ export class UserService {
   }
 
 
-  getUserById(id: string): Observable<UserModel> {
-    return this.http.get<UserResponse>(`${this.apiUrl}?results=1&seed=${id}`).pipe(
-      map(response => response.results) // Extract the single user from the response
+  getUserById(id: string): Observable<UserModel | null> {
+    return this.http.get<UserResponseModel>(`${this.apiUrl}?results=1&seed=${id}`).pipe(
+      map(response => response.results.length > 0 ? response.results[0] : null),
+      catchError(() => of(null))
     );
   }
 
