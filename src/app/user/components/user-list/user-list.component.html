@@ -22,7 +22,7 @@
     </form>
   </mat-toolbar>
 
-  <!-- Use NoResultsComponent here -->
+  <!-- Use NoResultsComponent -->
   <app-no-results *ngIf="userDS.data.length === 0 && !isLoading"></app-no-results>
 
   <mat-table *ngIf="userDS.data.length > 0" [dataSource]="userDS" matSort matSortDirection="desc" matSortDisableClear>
