@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {NoResultsComponent, SideNavComponent} from "./components";
 import {HomeRoutingModule} from "./home-routing.module";
 import * as fromComponents from "./components/index";
-import {MaterialModule} from "../shared/material.module";
+import {MaterialModule} from "@shared/material.module";
 
 
 @NgModule({

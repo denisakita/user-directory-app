@@ -123,17 +123,3 @@ export class UserResponseModel {
   }
 }
 
-export class UserResponse {
-  results: UserModel;
-  info: {
-    page: number;
-    results: number;
-    seed: string;
-    version: string;
-  };
-
-  constructor() {
-    this.results = new UserModel();
-    this.info = {page: 0, results: 0, seed: '', version: ''};
-  }
-}

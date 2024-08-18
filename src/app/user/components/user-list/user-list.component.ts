@@ -1,12 +1,12 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {UserService} from "../../services/user.service";
-import {environment} from "../../../../environments/environment";
+import { UserService } from '@user/services/user.service';
+import {environment} from "@environments/environment";
 import {MatTableDataSource} from "@angular/material/table";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {MatPaginator, MatPaginatorIntl} from "@angular/material/paginator";
 import {catchError, debounceTime, map, startWith, switchMap} from "rxjs";
 import {Router} from "@angular/router";
-import {UserModel} from "../../models/user";
+import { UserModel } from '@user/models/user';
 
 @Component({
   selector: 'app-user-list',

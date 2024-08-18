@@ -5,7 +5,12 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@user/services/*": ["src/app/user/services/*"],
+      "@user/models/*": ["src/app/user/models/*"],
+      "@user/components/*": ["src/app/user/components/*"],
+      "@environments/*": ["src/environments/*"],
+      "@shared/*": ["src/app/shared/*"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

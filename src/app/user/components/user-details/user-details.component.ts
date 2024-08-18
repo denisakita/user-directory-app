@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UserService} from '../../services/user.service';
+import { UserService } from '@user/services/user.service';
 import {catchError, of, switchMap} from 'rxjs';
-import {UserModel} from '../../models/user';
+import { UserModel } from '@user/models/user';
 
 @Component({
   selector: 'app-user-details',
