@@ -5,32 +5,38 @@
 
 <div *ngIf="!isLoading && user" class="user-details-container">
   <mat-card class="user-card">
-    <mat-card-header>
-      <mat-card-title class="user-name">{{ user.name?.first }} {{ user.name?.last }}</mat-card-title>
-    </mat-card-header>
     <mat-card-content>
-      <div class="user-info">
-        <div class="image-container image-glow">
-          <img *ngIf="user.picture?.medium" mat-card-image [src]="user.picture.medium"
-               alt="{{ user.name?.first }} {{ user.name?.last }}" class="user-picture">
+      <div class="card-content">
+        <!-- Left Side: Image -->
+        <div class="left-side">
+          <div class="image-container image-glow">
+            <img *ngIf="user.picture?.medium" mat-card-image [src]="user.picture.medium"
+                 alt="{{ user.name?.first }} {{ user.name?.last }}" class="user-picture">
+          </div>
         </div>
-        <div class="details-container">
-          <p class="details-item"><strong>Email:</strong> {{ user.email }}</p>
-          <p class="details-item"><strong>Phone:</strong> {{ user.phone }}</p>
-          <p class="details-item"><strong>Location:</strong> {{ user.location?.city }}, {{ user.location?.country }}</p>
-          <p class="details-item"><strong>Username:</strong> {{ user.login?.username }}</p>
-          <p class="details-item"><strong>Date of Birth:</strong> {{ user.dob?.date | date:'fullDate' }}</p>
+
+        <!-- Right Side: Details -->
+        <div class="right-side">
+          <div class="name-container">
+            <h1 class="user-name">{{ user.name?.first }} {{ user.name?.last }}</h1>
+          </div>
+          <div class="details-container">
+            <p class="details-item"><strong>Email:</strong> {{ user.email }}</p>
+            <p class="details-item"><strong>Phone:</strong> {{ user.phone }}</p>
+            <p class="details-item"><strong>Location:</strong> {{ user.location?.city }}, {{ user.location?.country }}</p>
+            <p class="details-item"><strong>Username:</strong> {{ user.login?.username }}</p>
+            <p class="details-item"><strong>Date of Birth:</strong> {{ user.dob?.date | date:'fullDate' }}</p>
+          </div>
+          <mat-card-actions>
+            <button mat-raised-button (click)="goBack()" class="cancel-button">
+              <mat-icon>arrow_back</mat-icon>
+              Back
+            </button>
+          </mat-card-actions>
         </div>
       </div>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button (click)="goBack()" class="cancel-button">
-        <mat-icon>arrow_back</mat-icon>
-        Back
-      </button>
-    </mat-card-actions>
   </mat-card>
 </div>
 
 <app-no-results *ngIf="!isLoading && !user"></app-no-results>
-
