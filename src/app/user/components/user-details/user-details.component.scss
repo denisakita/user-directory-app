@@ -1,0 +1,157 @@
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.custom-spinner .mat-progress-spinner circle,
+.custom-spinner .mat-spinner circle {
+  stroke: #457B9D;
+}
+
+.loading-text {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #457B9D;
+}
+
+.user-details-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.user-card {
+  width: 900px;
+  max-width: 100%;
+  margin: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.left-side {
+  flex: 0 0 45%;
+  max-width: 300px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container {
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.user-picture {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.right-side {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.name-container {
+  margin-bottom: 20px;
+}
+
+.name-container h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.details-container {
+  margin-top: 10px;
+}
+
+.details-item {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #555555;
+}
+
+.details-item strong {
+  color: #457B9D;
+}
+
+mat-card-actions {
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
+  box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.1);
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.cancel-button {
+  margin-right: 0;
+}
+
+.cancel-button mat-icon {
+  margin-right: 10px;
+}
+
+/* Media Query for screens between 390px and 600px */
+@media (min-width: 390px) and (max-width: 600px) {
+  .user-card {
+    width: 100%;
+    max-width: 450px;
+    margin: 10px;
+    display: block;
+  }
+
+  .card-content {
+    flex-direction: column;
+  }
+
+  .left-side {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 418px;
+  }
+
+  .user-picture {
+    width: 120px;
+    height: 120px;
+  }
+
+  .right-side {
+    padding: 16px;
+    text-align: center;
+  }
+
+  .name-container h1 {
+    font-size: 24px;
+  }
+
+  .details-item {
+    font-size: 16px;
+  }
+
+  mat-card-actions {
+    justify-content: center;
+  }
+}

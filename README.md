@@ -1,27 +1,106 @@
-# UserDirectoryApp
+# User Directory Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
+## Objective
 
-## Development server
+Create a simple Angular application that allows users to browse a list of users and view their details.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+1. **User Page**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Displays a list of users fetched from the Random User API.
+- Each user card shows their name, email, thumbnail avatar, and other relevant information.
+- Includes a search bar to filter users by name or email, with debounced input.
+- Shows a “no results” component if no users match the search criteria.
 
-## Build
+2. **User Details Page**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Clicking on a user navigates to a details page showing their full profile information including name, email, phone number, full-size avatar, etc.
 
-## Running unit tests
+## Technologies
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Angular**: v18.2.0
+- **Angular Material**: v17.1.2
+- **RxJS**: v7.8.0
+- **TypeScript**: v5.5.2
+- **SCSS**: For styling
 
-## Running end-to-end tests
+## Project Structure
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+src/
+  app/
+    user/
+      components/
+      models/
+      services/
+      user-routing.module.ts
+      user.module.ts
+    home/
+      components/
+      home.module.ts
+      home-routing.module.ts
+    shared/
+      material.module.ts
+    app.component.html
+    app.component.scss
+    app.component.ts
+    app.config.ts
+    app.routes.ts
+  assets/
+  environments/
+  index.html
+  main.ts
+  styles.scss
 
-## Further help
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Installation and Setup
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone <repository-url>
+   cd user-directory-app
+   ```
+
+2. **Install Dependencies**
+
+   Make sure you have [Node.js](https://nodejs.org/) installed. Then run:
+
+   ```bash
+   npm install
+   ```
+
+3. **Run the Application**
+
+   Start the development server with:
+
+   ```bash
+   npm start
+   ```
+
+   The application will be available at `http://localhost:4200`.
+
+4. **Build the Application**
+
+   To build the project for production, run:
+
+   ```bash
+   npm run build
+   ```
+
+5. **Run Tests**
+
+   To execute the unit tests:
+
+   ```bash
+   npm test
+   ```
+
+## Design and Responsiveness
+
+- The application is styled using SCSS.
+- Responsive design considerations are applied to ensure proper display on various screen sizes.
+
+

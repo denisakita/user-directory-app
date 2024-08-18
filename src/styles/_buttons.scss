@@ -1,0 +1,31 @@
+// Cancel button: Used to cancel actions, changes background color on hover.
+.cancel-button {
+  background-color: var(--accent-color);
+
+  &:hover {
+    background-color: var(--accent-color-shadow);
+  }
+}
+
+
+// Details button: Used for item details.
+.details-button {
+  color: var(--secondary-color);
+
+  &:hover {
+    color: var(--secondary-color-shadow);
+  }
+}
+
+
+// Clear button: Used to clear search inputs or filters.
+.clear-button {
+  margin-left: 8px;
+  background-color: var(--text-color);
+  color: var(--background-color) !important;
+
+  &:hover {
+    background-color: var(--accent-color-shadow);
+    color: var(--text-color) !important;
+  }
+}
