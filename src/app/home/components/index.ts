@@ -4,7 +4,6 @@ import {NoResultsComponent} from "./no-results/no-results.component";
 
 
 export const components: any[] = [
-
   SideNavComponent, HomeComponent, NoResultsComponent
 ]
 

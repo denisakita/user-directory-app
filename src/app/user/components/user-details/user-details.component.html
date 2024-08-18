@@ -9,7 +9,7 @@
       <div class="card-content">
         <!-- Left Side: Image -->
         <div class="left-side">
-          <div class="image-container image-glow">
+          <div class="image-container">
             <img *ngIf="user.picture?.medium" mat-card-image [src]="user.picture.medium"
                  alt="{{ user.name?.first }} {{ user.name?.last }}" class="user-picture">
           </div>
@@ -23,7 +23,8 @@
           <div class="details-container">
             <p class="details-item"><strong>Email:</strong> {{ user.email }}</p>
             <p class="details-item"><strong>Phone:</strong> {{ user.phone }}</p>
-            <p class="details-item"><strong>Location:</strong> {{ user.location?.city }}, {{ user.location?.country }}</p>
+            <p class="details-item"><strong>Location:</strong> {{ user.location?.city }}, {{ user.location?.country }}
+            </p>
             <p class="details-item"><strong>Username:</strong> {{ user.login?.username }}</p>
             <p class="details-item"><strong>Date of Birth:</strong> {{ user.dob?.date | date:'fullDate' }}</p>
           </div>

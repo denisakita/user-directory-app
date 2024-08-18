@@ -35,7 +35,7 @@ export class UserListComponent implements OnInit {
     this.initializeUserList();
 
     this.userFG.valueChanges.pipe(
-      debounceTime(300), // Add debounce to limit requests
+      debounceTime(300),
       startWith(this.userFG.value),
       switchMap(formValues => this.userService.filterUsers(formValues.name, formValues.email)),
       catchError(() => [])

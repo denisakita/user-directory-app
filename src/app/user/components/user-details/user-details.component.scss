@@ -1,5 +1,3 @@
-@import 'main';
-
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -15,7 +13,7 @@
 
 .loading-text {
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 18px;
   color: #457B9D;
 }
 
@@ -26,12 +24,13 @@
 }
 
 .user-card {
-  width: 800px;
-  height: auto;
+  width: 900px;
+  max-width: 100%;
   margin: 20px;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.9;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -42,59 +41,66 @@
 }
 
 .left-side {
-  flex: 0 0 40%;
-  max-width: 250px;
+  flex: 0 0 45%;
+  max-width: 300px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image-container {
-  max-width: 100%;
-}
-
-.image-container.image-glow {
   border-radius: 50%;
   overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .user-picture {
-  width: 100%;
-  height: auto;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .right-side {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
+  padding: 20px;
+  background-color: #ffffff;
 }
 
 .name-container {
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .name-container h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 32px;
+  font-weight: 600;
+  color: #333333;
 }
 
 .details-container {
-  flex: 1;
+  margin-top: 10px;
 }
 
 .details-item {
-  margin: 8px 0;
+  margin: 10px 0;
+  font-size: 18px;
+  color: #555555;
 }
 
-.details-container p {
-  margin: 4px 0;
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+.details-item strong {
+  color: #457B9D;
 }
 
 mat-card-actions {
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
+  box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.1);
   flex-direction: row;
   align-items: center;
-  box-sizing: border-box;
-  min-height: 52px;
   justify-content: flex-start;
 }
 
@@ -110,7 +116,7 @@ mat-card-actions {
 @media (min-width: 390px) and (max-width: 600px) {
   .user-card {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     margin: 10px;
     display: block;
   }
@@ -120,33 +126,29 @@ mat-card-actions {
   }
 
   .left-side {
-    flex: 0 0 40%;
+    flex: 0 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 418px;
   }
 
   .user-picture {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
   }
 
   .right-side {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
     padding: 16px;
-    justify-content: center;
-    align-items: center;
-
+    text-align: center;
   }
 
   .name-container h1 {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .details-item {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   mat-card-actions {

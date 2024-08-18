@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-// Import Angular Material components
 import {MatPaginator} from '@angular/material/paginator';
 import {
   MatCell,
