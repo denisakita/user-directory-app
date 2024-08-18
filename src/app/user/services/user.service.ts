@@ -15,6 +15,11 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
+  /**
+   * Fetches users from the API and caches them. Returns an observable with the list of users.
+   * Handles errors by returning an empty array.
+   */
+
   getUsers(): Observable<UserModel[]> {
     return this.http.get<UserResponseModel>(`${this.apiUrl}?results=10`).pipe(
       tap(response => this.cachedUsers = response.results),
@@ -22,6 +27,14 @@ export class UserService {
       catchError(() => of([]))
     );
   }
+
+  /**
+   * Filters users by name and/or email. Returns an observable with the filtered list of users.
+   * If the cached user list is empty, fetches users from the API first.
+   *
+   * @param name The name to filter users by (optional).
+   * @param email The email to filter users by (optional).
+   */
 
   filterUsers(name: string, email: string): Observable<UserModel[]> {
     if (!this.cachedUsers.length) {
@@ -38,6 +51,13 @@ export class UserService {
       (!email || user.email.toLowerCase().includes(email.toLowerCase()))
     );
   }
+
+  /**
+   * Retrieves a user by their ID. Returns an observable with the user or null if not found.
+   * If the cached user list is empty, fetches users from the API first.
+   *
+   * @param id The UUID of the user to retrieve.
+   */
 
   getUserById(id: string): Observable<UserModel | null> {
     if (this.cachedUsers.length === 0) {
